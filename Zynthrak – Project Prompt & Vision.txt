@@ -1,0 +1,175 @@
+Absolutely! Here's your updated **Zynthrak Project Prompt & Vision** compiled into a complete and structured document, ready for reference, collaboration, or publishing.
+
+---
+
+# 🧠 Zynthrak – **Project Prompt & Vision (Updated)**  
+*For Continuation & Execution*
+
+---
+
+## 🎯 **Project Vision**
+
+**Zynthrak** is a **decentralized, self-updating peer-to-peer (P2P) network**, built for seamless communication, coordination, and update propagation. Each **Zynthrak Node** operates as a headless, lightweight background process that connects with other peers using a **Gossip Protocol** to maintain network cohesion.
+
+A central **Bootstrap Server** exists solely to assist with **initial peer discovery** and **update metadata distribution**. The **Zynthrak Prime** acts as the **update coordinator** and monitoring console, ensuring reliable propagation of signed updates across the network.
+
+Zynthrak is **stateless at runtime**, and **ephemeral by design** — nodes do not persist peer data but instead dynamically rejoin and reconnect when online, ensuring a resilient and flexible system.
+
+---
+
+## 🧩 **Project Goals**
+
+| Goal | Description |
+|------|-------------|
+| 🛰️ P2P Communication | Achieve decentralized communication using **Gossip Protocol** for peer discovery and network health. |
+| 🧬 Update Coordination | Let **Zynthrak Prime** control update rollout using metadata from the Bootstrap Server. |
+| 🔁 Self-Updating | Ensure nodes autonomously apply verified updates, improving over time. |
+| 🌐 Global Scalability | Handle wide-scale node deployments and synchronization without central reliance. |
+| 🔒 Security & Integrity | Leverage **encryption + digital signatures** for all communication and update validation. |
+| 🛠️ Background Operation | All nodes are **silent processes**. Only Zynthrak Prime has a user interface (console-based). |
+
+---
+
+## 💻 **Technologies Stack**
+
+### 🔷 **1. Actix Web (Rust)**
+- **Role**: Bootstrap Server API
+- **Why?**
+  - High performance for concurrent requests.
+  - Built-in TLS support.
+  - Asynchronous + secure by design.
+
+---
+
+### 🦀 **2. Rust (Clients & Nodes)**
+- **Role**: Zynthrak Node & Prime software
+- **Why?**
+  - Memory-safe + performant.
+  - Great for networking, system-level control.
+  - Native concurrency with `async/await`.
+
+---
+
+### 📡 **3. Gossip Protocol**
+- **Role**: P2P network communication and synchronization
+- **Why?**
+  - Scalable and fault-tolerant.
+  - Fully decentralized peer discovery.
+  - Redundant information propagation.
+
+---
+
+### 🔐 **4. HTTPS + Encryption**
+- **Role**: All Bootstrap communications & GitHub API requests
+- **Why?**
+  - Prevents man-in-the-middle attacks.
+  - Ensures secure peer metadata transmission.
+
+---
+
+### ✍️ **5. Digital Signatures**
+- **Role**: Validating updates
+- **Why?**
+  - Verifies update authenticity.
+  - Guarantees update content integrity.
+
+---
+
+### 📦 **6. GitHub Releases**
+- **Role**: Hosting versioned node update binaries
+- **Why?**
+  - Clean distribution model.
+  - Version control + public access.
+  - Reliable and scalable hosting.
+
+---
+
+## 🔧 **Project Phases**
+
+### 🟩 **Phase 1: Bootstrap Server**
+- [x] Implement basic REST API using **Actix Web**
+- [x] Allow node registration (`POST /api/register`)
+- [ ] Serve signed update metadata (`GET /api/update`)
+- [ ] TLS support
+- [ ] In-memory storage of connected nodes
+
+---
+
+### 🟨 **Phase 2: Zynthrak Prime**
+- [ ] Connects to Bootstrap API for metadata
+- [ ] Downloads update from GitHub Release
+- [ ] Verifies digital signature
+- [ ] Pushes update to connected nodes
+- [ ] CLI interface for monitoring and control
+
+---
+
+### 🟨 **Phase 3: Zynthrak Node Clients**
+- [x] Startup: register with bootstrap, fetch peers
+- [ ] Maintain memory-only peer list
+- [ ] Attempt TCP/QUIC connections to peers
+- [ ] Receive updates, validate, apply
+- [ ] Periodically re-discover peers
+
+---
+
+### 🟦 **Phase 4: Gossip Protocol**
+- [ ] Implement heartbeat messages
+- [ ] Share peer list with other nodes
+- [ ] Resilient reconnection and discovery loop
+- [ ] Custom protocol for update propagation
+
+---
+
+### 🟥 **Phase 5: Scaling & Deployment**
+- [ ] Simulate 100+ node mesh
+- [ ] Global latency + packet loss testing
+- [ ] CPU/memory profiling
+- [ ] Graceful node restarts and rejoining
+
+---
+
+## 🌍 **Operational Principles**
+
+| Concept | Implementation |
+|--------|----------------|
+| Stateless | Nodes don’t store peers on disk — they rediscover on boot |
+| Always Connected | Nodes periodically gossip and rejoin as needed |
+| Volatile | Node state may be lost — but the network always heals |
+| No UI | All nodes are CLI-based or daemonized — Prime node has terminal dashboard |
+| GitHub Host | Updates are hosted using GitHub Releases |
+| P2P Secure | All gossip communication is encrypted |
+
+---
+
+## 🔐 **Security Summary**
+
+| Feature | Detail |
+|--------|--------|
+| ✅ HTTPS | For all external communication (Bootstrap, GitHub) |
+| ✅ Digital Signatures | Prime signs each update, nodes validate before install |
+| ✅ Encrypted Traffic | Peer-to-peer messages are encrypted (via TLS or key exchange) |
+| ✅ Update Rollback Protection | Signature includes version metadata |
+| ✅ Runtime Hardening | Only known peers allowed by trust rules (future) |
+
+---
+
+## 📌 **What Happens on Node Boot?**
+
+1. Generate unique ID (`UUID` or hardware ID)
+2. Register with Bootstrap Server
+3. Receive list of available peers
+4. Connect to known peers
+5. Periodically send `heartbeat` messages
+6. Check for updates
+7. Apply updates (if valid signature)
+
+---
+
+## ✅ Summary
+
+Zynthrak blends **peer-to-peer networking** with a **secure, updatable node system** that requires no central authority to function — only to initiate. Nodes act as semi-autonomous agents in a decentralized mesh, and the entire system can operate efficiently at scale, with robustness to disconnection, failure, or downtime.
+
+---
+
+Would you like this exported as a **PDF**, **Markdown**, or pushed to a GitHub repo for documentation purposes? I can also help generate a logo, architecture diagram, or README if you want.
